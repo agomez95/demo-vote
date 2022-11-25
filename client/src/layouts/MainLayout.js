@@ -1,51 +1,24 @@
-import { Box, Paper } from '@mui/material'
+import { Box, Grid, Paper, Container } from '@mui/material'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import { Outlet } from 'react-router-dom'
 
-const MainLayout = () => {   
-    return (
-        /*<Box
-            sx={{
-                display: 'flex',
-                alignItems: 'center',
-                flexDirection: 'column',
-                backgroundColor: '#41464b',
-            }}
-        >
-            <Navbar></Navbar>
-            <Box display="flex" justifyContent="center" alignItems="center" minHeight="0vh"><Outlet/></Box>
-            <Footer></Footer>
-        </Box>*/
-        <Box
-            /*sx={{
-                display: 'flex',
-                alignItems: 'center',
-                flexDirection: 'column',   
-                flexWrap: 'wrap',                
-                backgroundColor: '#41464b',
-                '& > :not(style)': {
-                    m: 1,
-                    width: 128,
-                    height: 128,
-                },
-            }}*/
 
-            sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                minHeight: '100vh',
-                backgroundColor: '#41464b',
-              }}
-        >
+
+const MainLayout = () => {   
+
+    return (
+        <Box style={{height: "100%"}}>
             <Navbar></Navbar>
-            <Paper style={{width: '30%'}}>
-                <Outlet/>
-            </Paper>
+                <Container style={{ height: '100%', content: 'center', justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+                    <Paper style={{ width: '50%', borderRadius: '30px'}}>
+                        <Grid container alignItems="center" direction="row" style={{ width: '100%', height: '100%' }}>
+                            <Outlet/>
+                        </Grid>
+                    </Paper>
+                </Container>
             <Footer></Footer>
-      </Box>
+        </Box>
     )
 }   
 
