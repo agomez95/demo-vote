@@ -4,7 +4,7 @@ import Candidates from "./pages/Candidates"
 import Amphoras from "./pages/Amphoras"
 import MainLayout from "./layouts/MainLayout"
 import NotFound from "./layouts/NotFound"
-import NotConnected from "./components/NoConnected"
+import NotConnected from "./layouts/NoConnected"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 function App(){

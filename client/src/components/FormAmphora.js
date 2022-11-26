@@ -1,4 +1,4 @@
-import { Box, Grid,  Card, Typography, TextField, Button, Paper } from '@mui/material'
+import { Grid, TextField, Button, Paper } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useState, useEffect } from 'react'
 import {connectWallet, saveAmphora} from '../ABI/Amphora'

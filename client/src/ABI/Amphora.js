@@ -5,7 +5,7 @@ const connectWallet = async () => {
 }
 
 const saveAmphora = async (amphoraName) => {
-    let accountsOnEnable = await window.ethereum.request({method: 'eth_requestAccounts'});
+    let accountsOnEnable = await window.ethereum.request({method: 'eth_requestAccounts'})
     let amphoraConcatName = 'Anfora N° - 0' + amphoraName
     const amphoraUpdate = await contract.newAmphora(amphoraConcatName, accountsOnEnable[0])
     await amphoraUpdate.wait()   
@@ -18,4 +18,9 @@ const saveAmphora = async (amphoraName) => {
     })
 }
 
-export {connectWallet, saveAmphora }
+const validateAmphora = async (amphoraAddress) => {
+    const result = await contract.validateAmphora(amphoraAddress)
+    return result
+}
+
+export {connectWallet, saveAmphora, validateAmphora }

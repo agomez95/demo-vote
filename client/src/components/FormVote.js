@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles'
 import { useState, useEffect } from 'react'
 import { connectWallet, saveVote } from '../ABI/Vote'
 import { getCandidates } from '../ABI/Candidate'
-
+import { validateAmphora } from '../ABI/Amphora'
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#fff' : '#fff',
@@ -20,6 +20,7 @@ function FormVote() {
     const [ studentCode, setCode ] = useState("")
     const [ groupSelected, setGroup ] = useState("")
     const [ candidates, setCandidates ] = useState([])
+    const [ amphoraValid, setValid ] = useState(false)
 
     useEffect(() => {  
         connectWallet().catch(console.error)
@@ -40,10 +41,20 @@ function FormVote() {
         return state
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()        
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        let accountSend = await window.ethereum.request({method: 'eth_requestAccounts'})
         if(verifyCode(studentCode)) {
-            saveVote(groupSelected, studentCode)
+            validateAmphora(accountSend[0])
+                .then((res) => {setValid(res)})
+                .catch(() => console.error('salio mal'))
+            if(amphoraValid){
+                saveVote(groupSelected, studentCode)
+            } else {
+                alert('Anfora no valida')
+                setGroup('')
+                setCode('')
+            }
         } else {
             alert('Codigo Incorrecto')
             setGroup('')
