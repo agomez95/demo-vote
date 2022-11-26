@@ -1,18 +1,17 @@
+const { ethers } = require("hardhat");
 
-const hre = require("hardhat");
+const deploy = async () => {
+    const [deployer] = await ethers.getSigners();
+    console.log("Deploying contract with the account: ", deployer.address)
 
-async function main() {
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy();
-
-  await greeter.deployed();
-
-  console.log("Greeter deployed to: ", greeter.address);
+    const Election = await ethers.getContractFactory("Election")
+    const deployed = await Election.deploy()
+    console.log("Election is deployed at: ", deployed.address)
 }
 
-main()
-.then(() => process.exit(0))
-.catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+deploy()
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.log(error);
+        process.exit(1);
+    })

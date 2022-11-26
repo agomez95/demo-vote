@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
-import "hardhat/console.sol";
 
-contract Greeter {
+contract Election {
     uint public idenCandidates = 0;
     uint public idenAmphoras = 0;
     uint public counter = 0;    
@@ -83,6 +82,5 @@ contract Greeter {
         return candidates[id];
     }
 
-    function deposit() payable public {}
     //0x5FbDB2315678afecb367f032d93F642f64180aa3
 }
