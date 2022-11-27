@@ -1,7 +1,7 @@
 import { Grid, TextField, Button, Paper } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useState, useEffect } from 'react'
-import {connectWallet, saveAmphora} from '../ABI/Amphora'
+import { saveAmphora } from '../ABI/Amphora'
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -19,10 +19,17 @@ function FormAmphora() {
     const [ direction, setDirection ] = useState("")
 
     useEffect(() => {  
-        connectWallet().catch(console.error).then(async () => {
+        /*connectWallet().catch(console.error).then(async () => {
             let directionVar = await window.ethereum.request({method: 'eth_requestAccounts'})
             setDirection(directionVar[0])
-        })
+        })*/
+        if (localStorage.getItem("previouslyConnected") === "true") {
+            const getDirection = async () => {
+                let directionVar = await window.ethereum.request({method: 'eth_requestAccounts'})
+                setDirection(directionVar[0])
+            }
+            getDirection()
+        }
     },[ ])
 
     const handleSubmit = (e) => {

@@ -1,7 +1,7 @@
 import { Grid, TextField, Button, Paper } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useState, useEffect } from 'react'
-import {connectWallet, saveCandidate} from '../ABI/Candidate'
+import { saveCandidate } from '../ABI/Candidate'
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -18,7 +18,8 @@ function FormCandidates() {
     const [ group, setGroup ] = useState("")
 
     useEffect(() => {  
-        connectWallet().catch(console.error)
+        //connectWallet().catch(console.error)
+        if (localStorage.getItem("previouslyConnected") === "true") console.log('Conectado')
     },[ ])
 
     const handleSubmit = (e) => {

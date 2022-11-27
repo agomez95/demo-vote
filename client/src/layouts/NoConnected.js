@@ -1,19 +1,24 @@
-import { Grid, Container, Paper, Typography } from '@mui/material'
-import ErrorIcon from '@mui/icons-material/Error';
+import React from 'react';
+import { Box, Typography } from '@mui/material';
 
-const NotConnected = () => {
+export default function NotConnected() {
     return (
-        <Container>
-            <Paper>
-                <Grid style={{height: "15vh"}} container alignItems="center" direction="row">
-                    <Grid item container direction="column" justify="center" alignItems="center" xs={12}>
-                        <ErrorIcon style={{fontSize: '50px'}}/>
-                        <Typography variant="subtitle2" style={{ fontSize: '20px' }}>Error: Ingrese a su wallet por favor</Typography>
-                    </Grid>
-                </Grid>
-            </Paper>
-        </Container>
+        <Box
+            sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+                minHeight: '100vh',
+                backgroundColor: '#41464b',
+            }}
+        >
+            <Typography variant="h3" style={{ color: 'white', textAlign: 'center' }}>
+                No hay conexion con Metamask
+            </Typography>
+            <Typography variant="h6" style={{ color: 'white' }}>
+                Por favor conectese a su wallet desde la opción "Conectarse" en el menu superior
+            </Typography>
+        </Box>
     )
 }
-
-export default NotConnected

@@ -81,6 +81,4 @@ contract Election {
     function getCandidates(uint id) public view returns (Candidate memory) {
         return candidates[id];
     }
-
-    //0x5FbDB2315678afecb367f032d93F642f64180aa3
 }

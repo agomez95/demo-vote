@@ -1,7 +1,7 @@
 import { Grid,  TextField, Button, Paper, Select, MenuItem } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useState, useEffect } from 'react'
-import { connectWallet, saveVote } from '../ABI/Vote'
+import { saveVote } from '../ABI/Vote'
 import { getCandidates } from '../ABI/Candidate'
 import { validateAmphora } from '../ABI/Amphora'
 
@@ -22,9 +22,22 @@ function FormVote() {
     const [ candidates, setCandidates ] = useState([])
     const [ amphoraValid, setValid ] = useState(false)
 
+
+    /*const { active, activate, account } = useWeb3React()
+    const [ state, setState ] = useState(false)
+
+    const connect = useCallback(() => {
+        activate(injected)
+        localStorage.setItem("previouslyConnected", "true")
+    }, [activate])
+
+    useEffect(() => {
+        if (localStorage.getItem("previouslyConnected") === "true") connect()
+    }, [connect])*/
+
     useEffect(() => {  
-        connectWallet().catch(console.error)
-        getCandidates().then((res) => setCandidates(res))
+        //connectWallet().catch(console.error)
+        if (localStorage.getItem("previouslyConnected") === "true") getCandidates().then((res) => setCandidates(res))
     },[ ])
 
     const verifyCode = (studentCode) => {
